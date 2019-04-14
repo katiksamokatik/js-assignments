@@ -72,7 +72,7 @@ function getRegexForPitSpot() {
  * @return {RegExp}
  */
 function getRegexForIPv4() {
-   throw new Error('Not implemented');
+   return /^[0-2]?\d?\d?.[0-2]?\d?\d?.[0-2]?\d?\d?.[0-2]?\d?\d?$/;
 }
 
 
@@ -116,9 +116,8 @@ function getRegexForSSN() {
  *   'Pa55'.match(validator) => false
  */
 function getPasswordValidator(minLength) {
-   throw new Error('Not implemented');
-   // let reg = /(\d+|\w+){6,}/i;
-   // return reg;
+   let str = '^(?=\\w*[a-z])(?=\\w*[A-Z])(?=\\w*\\d)[a-zA-Z\\d]{' + minLength + ',}$';
+   return new RegExp(str);
 }
 
 
