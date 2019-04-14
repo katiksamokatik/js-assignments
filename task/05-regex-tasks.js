@@ -53,7 +53,7 @@ function getRegexForGuid() {
  *
  */
 function getRegexForPitSpot() {
-   throw new Error('Not implemented');
+   return /p.t/;
 }
 
 
@@ -117,6 +117,8 @@ function getRegexForSSN() {
  */
 function getPasswordValidator(minLength) {
    throw new Error('Not implemented');
+   // let reg = /(\d+|\w+){6,}/i;
+   // return reg;
 }
 
 
