@@ -132,7 +132,7 @@ function isTriangle(a,b,c) {
  *  
  */
 function doRectanglesOverlap(rect1, rect2) {
-    throw new Error('Not implemented');
+    throw new Error('Not implemented');        
 }
 
 
@@ -163,7 +163,8 @@ function doRectanglesOverlap(rect1, rect2) {
  *   
  */
 function isInsideCircle(circle, point) {
-    throw new Error('Not implemented');
+    return Math.pow
+      (Math.abs(point.x - circle.center.x), 2) + Math.pow(Math.abs(point.y - circle.center.y), 2) < Math.pow(circle.radius, 2);
 }
 
 
@@ -384,7 +385,7 @@ if(str.length % 2 !== 0) return false;
 
 
 /**
- * Returns the human readable string of time period specified by the start and end time.
+ * Returns the human readable string of time diff specified by the start and end time.
  * The result string should be constrcuted using the folliwing rules:
  *
  * ---------------------------------------------------------------------
@@ -416,17 +417,52 @@ if(str.length % 2 !== 0) return false;
  */
  
 function timespanToHumanString(startDate, endDate) {
-    throw new Error('Not implemented');
+    let diff = (endDate.getTime() - startDate.getTime()) / 1000;
 
-    // let end = Date.parse(endDate)
-    // let start = Date.parse(startDate)
-  
-    // let diff = end - start;
+    if (diff <= 45) {
+        return 'a few seconds ago';
+    } else if ( diff <= 90) {
+        return 'a minute ago';
+    }
     
+    diff = diff/ 60;
+
+    if (diff <= 45) {
+        return diff % 0.5 !== 0 ? `${Math.round(diff)} minutes ago` : `${Math.floor(diff)} minutes ago`;
+    } else if (diff <= 90) {
+        return 'an hour ago';
+    }
+
+    diff /= 60; //converts to hour
     
-    // if(diff > 0 && diff < 45) {
-    //   return 'a few seconds ago'
-    // }
+     if (diff <= 22) {
+        return diff % 0.5 !== 0 ? `${Math.round(diff)} hours ago` : `${Math.floor(diff)} hours ago`;
+     } else if (diff <= 36) {
+        return 'a day ago';
+     }
+
+     diff /= 24; //converts to days
+
+     if (diff <= 25) {
+        return diff % 0.5 !== 0 ? `${Math.round(diff)} days ago` : `${Math.floor(diff)} days ago`;
+     } else if (diff <= 45) {
+        return 'a month ago';
+    }
+    let months = Math.round(diff / 30);
+
+    if (diff <= 345) {
+        return `${months} months ago`;
+    }
+
+    else if (diff <= 545) {
+        return 'a year ago';
+    }
+
+    let years = Math.round(months / 12);
+
+    if (diff > 546) {
+        return `${years} years ago`;
+    }
   }
 
 
